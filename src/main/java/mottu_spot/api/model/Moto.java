@@ -1,4 +1,4 @@
-package spot_map.api.model;
+package mottu_spot.api.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 

@@ -1,4 +1,4 @@
-package spot_map.api.exception;
+package mottu_spot.api.exception;
 
 import java.util.HashMap;
 import java.util.Map;

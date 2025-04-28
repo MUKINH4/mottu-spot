@@ -1,4 +1,4 @@
-package spot_map.api.controller;
+package mottu_spot.api.controller;
 
 import java.util.List;
 
@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
-import spot_map.api.DTO.PatioDTO;
-import spot_map.api.model.Patio;
-import spot_map.api.service.PatioService;
+import mottu_spot.api.DTO.PatioDTO;
+import mottu_spot.api.model.Patio;
+import mottu_spot.api.service.PatioService;
 
 
 

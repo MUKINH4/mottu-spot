@@ -1,13 +1,13 @@
-package spot_map.api.service;
+package mottu_spot.api.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import spot_map.api.DTO.MotoDTO;
-import spot_map.api.model.Moto;
-import spot_map.api.model.Patio;
-import spot_map.api.repository.MotoRepository;
-import spot_map.api.repository.PatioRepository;
+import mottu_spot.api.DTO.MotoDTO;
+import mottu_spot.api.model.Moto;
+import mottu_spot.api.model.Patio;
+import mottu_spot.api.repository.MotoRepository;
+import mottu_spot.api.repository.PatioRepository;
 
 @Service
 public class MotoService {

@@ -1,4 +1,4 @@
-package spot_map.api.DTO;
+package mottu_spot.api.DTO;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package spot_map.api.controller;
+package mottu_spot.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
-import spot_map.api.DTO.MotoDTO;
-import spot_map.api.model.Moto;
-import spot_map.api.service.MotoService;
+import mottu_spot.api.DTO.MotoDTO;
+import mottu_spot.api.model.Moto;
+import mottu_spot.api.service.MotoService;
 
 
 @RestController

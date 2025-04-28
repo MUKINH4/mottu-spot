@@ -1,4 +1,4 @@
-package spot_map.api.config;
+package mottu_spot.api.config;
 
 import java.util.List;
 
@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import jakarta.annotation.PostConstruct;
-import spot_map.api.model.Endereco;
-import spot_map.api.model.Moto;
-import spot_map.api.model.Patio;
-import spot_map.api.repository.EnderecoRepository;
-import spot_map.api.repository.MotoRepository;
-import spot_map.api.repository.PatioRepository;
+import mottu_spot.api.model.Endereco;
+import mottu_spot.api.model.Moto;
+import mottu_spot.api.model.Patio;
+import mottu_spot.api.repository.EnderecoRepository;
+import mottu_spot.api.repository.MotoRepository;
+import mottu_spot.api.repository.PatioRepository;
 
 @Component
 public class DatabaseSeeder {

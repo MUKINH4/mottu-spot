@@ -1,15 +1,15 @@
-package spot_map.api.service;
+package mottu_spot.api.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import spot_map.api.DTO.PatioDTO;
-import spot_map.api.model.Endereco;
-import spot_map.api.model.Patio;
-import spot_map.api.repository.EnderecoRepository;
-import spot_map.api.repository.PatioRepository;
+import mottu_spot.api.DTO.PatioDTO;
+import mottu_spot.api.model.Endereco;
+import mottu_spot.api.model.Patio;
+import mottu_spot.api.repository.EnderecoRepository;
+import mottu_spot.api.repository.PatioRepository;
 
 @Service
 public class PatioService {
