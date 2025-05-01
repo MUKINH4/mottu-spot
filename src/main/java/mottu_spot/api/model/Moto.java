@@ -1,5 +1,9 @@
 package mottu_spot.api.model;
 
+import java.time.LocalDateTime;
+
+import mottu_spot.api.model.enums.Status;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Entity;
@@ -12,6 +16,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,24 +29,25 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Moto {
-    
-    public enum Status {
-        ATIVO,
-        INATIVO
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
+    @Size(min = 6, max = 10, message = "A placa deve ter entre 6 e 10 caracteres")
+    @Pattern(regexp = "^[A-Z0-9\\- ]{6,10}$", message = "Placa fora do padrão")
     private String placa;
 
+    @Size(max = 500, message = "O máximo de caracteres é 500")
     private String descricao;
 
     @Enumerated(EnumType.STRING)
     @NotNull(message = "status não pode ser nulo")
     private Status status;
+
+    @Builder.Default
+    private LocalDateTime dataAdicao = LocalDateTime.now();
 
     @ManyToOne
     @JoinColumn(name = "patio_id")

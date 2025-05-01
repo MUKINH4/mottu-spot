@@ -1,5 +1,6 @@
 package mottu_spot.api.model;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -34,6 +35,9 @@ public class Patio {
     @OneToOne
     @JoinColumn(name = "endereco_id")
     private Endereco endereco;
+
+    @Builder.Default
+    private LocalDateTime dataAdicao = LocalDateTime.now(); 
 
     @OneToMany(mappedBy = "patio")
     @JsonManagedReference

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import mottu_spot.api.DTO.MotoDTO;
 import mottu_spot.api.model.Moto;
 import mottu_spot.api.model.Patio;
+import mottu_spot.api.model.enums.Status;
 import mottu_spot.api.repository.MotoRepository;
 import mottu_spot.api.repository.PatioRepository;
 
@@ -19,13 +20,14 @@ public class MotoService {
     private PatioRepository patioRepository;
 
     public Moto adicionarMoto(MotoDTO motoDto) {
+
         Patio patio = patioRepository.findById(motoDto.getPatioId())
             .orElseThrow(() -> new RuntimeException());
 
         Moto moto = Moto.builder()
         .placa(motoDto.getPlaca())
         .descricao(motoDto.getDescricao())
-        .status(Moto.Status.valueOf(motoDto.getStatus().toUpperCase()))
+        .status(Status.valueOf(motoDto.getStatus().toUpperCase()))
         .patio(patio)
         .build();
 

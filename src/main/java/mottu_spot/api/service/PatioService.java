@@ -1,8 +1,12 @@
 package mottu_spot.api.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import mottu_spot.api.DTO.PatioDTO;
@@ -42,5 +46,14 @@ public class PatioService {
 
     public List<Patio> listarPatios(){
         return patioRepository.findAll();
+    }
+
+    
+    public Page<Patio> listarPatios(Specification<Patio> patioFilter, Pageable pageable){
+        return patioRepository.findAll(patioFilter, pageable);
+    }
+
+    public Optional<Patio> buscarPatioPorId(Long id) {
+        return patioRepository.findById(id);
     }
 }

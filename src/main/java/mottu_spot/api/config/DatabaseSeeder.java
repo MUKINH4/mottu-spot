@@ -9,6 +9,7 @@ import jakarta.annotation.PostConstruct;
 import mottu_spot.api.model.Endereco;
 import mottu_spot.api.model.Moto;
 import mottu_spot.api.model.Patio;
+import mottu_spot.api.model.enums.Status;
 import mottu_spot.api.repository.EnderecoRepository;
 import mottu_spot.api.repository.MotoRepository;
 import mottu_spot.api.repository.PatioRepository;
@@ -83,21 +84,21 @@ public class DatabaseSeeder {
             Moto.builder()
             .placa("ABC1234")
             .descricao("Moto 1 - Nova")
-            .status(Moto.Status.ATIVO)
+            .status(Status.ATIVO)
             .patio(patios.get(0))
             .build(),
 
             Moto.builder()
             .placa("XYZ5678")
             .descricao("Moto 2 - Usada")
-            .status(Moto.Status.INATIVO)
+            .status(Status.INATIVO)
             .patio(patios.get(1))
             .build(),
 
             Moto.builder()
             .placa("DEF9012")
             .descricao("Moto 3 - Revisada")
-            .status(Moto.Status.ATIVO)
+            .status(Status.ATIVO)
             .patio(patios.get(2))
             .build()
         );
