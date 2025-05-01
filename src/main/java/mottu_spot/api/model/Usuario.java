@@ -1,5 +1,12 @@
 package mottu_spot.api.model;
 
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -18,11 +25,11 @@ import mottu_spot.api.model.enums.Role;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Usuario {
+public class Usuario implements UserDetails {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
 
     @NotBlank
     private String usuario;
@@ -31,10 +38,28 @@ public class Usuario {
     private String senha;
 
     @Enumerated(EnumType.STRING)
-    @Builder.Default
-    private Role role = Role.USER;
+    private Role role;
 
-    @NotBlank
-    private String nome;
+    @Override
+    public String getUsername(){
+        return usuario;
+    }
+
+    @Override
+    public String getPassword(){
+        return senha;
+    }
+
+    public Usuario(String usuario, String senha, Role role) {
+        this.usuario = usuario;
+        this.senha = senha;
+        this.role = role;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        if (role == Role.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_ADMIN"));
+        else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+    }
 
 }

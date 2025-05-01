@@ -1,46 +1,22 @@
 package mottu_spot.api.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import mottu_spot.api.DTO.LoginDTO;
-import mottu_spot.api.DTO.RegistroDTO;
-import mottu_spot.api.model.Usuario;
-import mottu_spot.api.repository.AuthRepository;
+import mottu_spot.api.repository.UsuarioRepository;
 
 @Service
-public class AuthService {
+public class AuthService implements UserDetailsService{
 
     @Autowired
-    private AuthRepository authRepository;
+    UsuarioRepository repository;
 
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
-
-    public Usuario registrar(RegistroDTO registroDTO) {
-        if (!registroDTO.getSenha().equals(registroDTO.getConfirmarSenha())) {
-            throw new IllegalArgumentException("As senhas não coincidem");
-        }
-
-        Usuario usuario = Usuario.builder()
-                .nome(registroDTO.getNome())
-                .senha(passwordEncoder.encode(registroDTO.getSenha()))
-                .usuario(registroDTO.getUsuario())
-                .build();
-
-        
-        return authRepository.save(usuario);
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return repository.findByUsuario(username);
     }
-
-    public Usuario logar(LoginDTO loginDTO) {
-        Usuario usuario = authRepository.findByUsuario(loginDTO.getUsuario())
-                .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado"));
-
-        if (!passwordEncoder.matches(loginDTO.getSenha(), usuario.getSenha())) {
-            throw new IllegalArgumentException("Senha incorreta");
-        }
-
-        return usuario; // Retorna o usuário autenticado
-    }
+    
 }

@@ -11,7 +11,4 @@ public class LoginDTO {
 
     @NotBlank(message = "O campo senha é obrigatório")
     private String senha;
-
-    @NotBlank(message = "O campo 'nome' é obrigatório.")
-    private String nome;
 }
