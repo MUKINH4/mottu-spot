@@ -3,16 +3,20 @@ package mottu_spot.api.config;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import jakarta.annotation.PostConstruct;
 import mottu_spot.api.model.Endereco;
 import mottu_spot.api.model.Moto;
 import mottu_spot.api.model.Patio;
+import mottu_spot.api.model.Usuario;
+import mottu_spot.api.model.enums.Role;
 import mottu_spot.api.model.enums.Status;
 import mottu_spot.api.repository.EnderecoRepository;
 import mottu_spot.api.repository.MotoRepository;
 import mottu_spot.api.repository.PatioRepository;
+import mottu_spot.api.repository.UsuarioRepository;
 
 @Component
 public class DatabaseSeeder {
@@ -25,6 +29,9 @@ public class DatabaseSeeder {
 
     @Autowired
     private PatioRepository patioRepository;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     @PostConstruct
     public void init(){
@@ -104,5 +111,21 @@ public class DatabaseSeeder {
         );
 
         motoRepository.saveAll(motos);
+
+        var usuarios = List.of(
+            Usuario.builder()
+            .usuario("admin")
+            .senha(new BCryptPasswordEncoder().encode("admin"))
+            .role(Role.ADMIN)
+            .build(),
+
+            Usuario.builder()
+            .usuario("user")
+            .senha(new BCryptPasswordEncoder().encode("user"))
+            .role(Role.USER)
+            .build()
+        );
+
+        usuarioRepository.saveAll(usuarios);
     }
 }

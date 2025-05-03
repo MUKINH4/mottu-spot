@@ -45,7 +45,8 @@ public class AuthController {
 
     @PostMapping("/registrar")
     public ResponseEntity<String> registrar(@RequestBody @Valid RegistroDTO registroDTO) {
-        if (usuarioRepository.findByUsuario(registroDTO.getUsuario()) != null ) return ResponseEntity.badRequest().build();
+        if (usuarioRepository.existsByUsuario(registroDTO.getUsuario())) throw new IllegalArgumentException("O nome do usuário já está em uso.");
+        if (!registroDTO.getSenha().equals(registroDTO.getConfirmarSenha())) throw new IllegalArgumentException("As senhas não coincidem.");
         
         String encryptedPassword = new BCryptPasswordEncoder().encode(registroDTO.getSenha());
 

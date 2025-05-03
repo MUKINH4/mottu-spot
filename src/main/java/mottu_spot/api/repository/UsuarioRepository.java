@@ -9,4 +9,5 @@ import mottu_spot.api.model.Usuario;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, String> {
     UserDetails findByUsuario(String usuario);
+    boolean existsByUsuario(String usuario);
 }

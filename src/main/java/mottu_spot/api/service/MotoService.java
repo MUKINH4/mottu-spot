@@ -1,6 +1,11 @@
 package mottu_spot.api.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import mottu_spot.api.DTO.MotoDTO;
@@ -32,5 +37,13 @@ public class MotoService {
         .build();
 
         return motoRepository.save(moto);
+    }
+
+    public Optional<Moto> buscarMotoPorId(Long id) {
+        return motoRepository.findById(id);
+    }
+
+    public Page<Moto> listarMotos(Specification<Moto> motoFilter, Pageable pageable) {
+        return motoRepository.findAll(motoFilter, pageable);
     }
 }

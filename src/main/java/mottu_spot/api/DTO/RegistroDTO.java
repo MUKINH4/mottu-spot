@@ -20,6 +20,9 @@ public class RegistroDTO {
     @NotBlank(message = "O campo 'senha' é obrigatório.")
     private String senha;
 
+    @NotBlank(message = "O campo 'confirmarSenha' é obrigatório.")
+    private String confirmarSenha;
+
     @Enumerated(EnumType.STRING)
     private Role role;
 }

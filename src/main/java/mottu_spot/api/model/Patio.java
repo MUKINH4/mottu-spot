@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,14 +33,14 @@ public class Patio {
     @NotBlank(message = "nome não pode ser nulo")
     private String nome;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JoinColumn(name = "endereco_id")
     private Endereco endereco;
 
     @Builder.Default
     private LocalDateTime dataAdicao = LocalDateTime.now(); 
 
-    @OneToMany(mappedBy = "patio")
+    @OneToMany(mappedBy = "patio", cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JsonManagedReference
     private List<Moto> motos;
 }
