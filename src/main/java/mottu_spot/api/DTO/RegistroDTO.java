@@ -24,5 +24,5 @@ public class RegistroDTO {
     private String confirmarSenha;
 
     @Enumerated(EnumType.STRING)
-    private Role role;
+    private Role role = Role.USER;
 }
