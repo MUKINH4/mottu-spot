@@ -27,19 +27,19 @@ public class PatioService {
 
     public Patio criarPatio(PatioDTO patioDto) {
         Endereco endereco = Endereco.builder()
-        .logradouro(patioDto.getLogradouro())
-        .numero(patioDto.getNumero())
-        .cidade(patioDto.getCidade())
-        .estado(patioDto.getEstado())
-        .pais(patioDto.getPais())
-        .cep(patioDto.getCep())
-        .bairro(patioDto.getBairro())
+        .logradouro(patioDto.logradouro())
+        .numero(patioDto.numero())
+        .cidade(patioDto.cidade())
+        .estado(patioDto.estado())
+        .pais(patioDto.pais())
+        .cep(patioDto.cep())
+        .bairro(patioDto.bairro())
         .build();
 
         enderecoRepository.save(endereco);
 
         Patio patio = Patio.builder()
-        .nome(patioDto.getNome())
+        .nome(patioDto.nome())
         .endereco(endereco)
         .build();
         return patioRepository.save(patio);
@@ -72,22 +72,22 @@ public class PatioService {
             .orElseThrow(() -> new IllegalArgumentException("Pátio não encontrado"));
 
         Endereco endereco = Endereco.builder()
-        .logradouro(patioDto.getLogradouro())
-        .numero(patioDto.getNumero())
-        .cidade(patioDto.getCidade())
-        .estado(patioDto.getEstado())
-        .pais(patioDto.getPais())
-        .cep(patioDto.getCep())
-        .bairro(patioDto.getBairro())
+        .logradouro(patioDto.logradouro())
+        .numero(patioDto.numero())
+        .cidade(patioDto.cidade())
+        .estado(patioDto.estado())
+        .pais(patioDto.pais())
+        .cep(patioDto.cep())
+        .bairro(patioDto.bairro())
         .build();
 
         enderecoRepository.save(endereco);
         
-        if (patioDto.getNome() == null) {
+        if (patioDto.nome() == null) {
             throw new IllegalArgumentException("nome: nome não pode ser nulo");
         }
 
-        patio.setNome(patioDto.getNome());
+        patio.setNome(patioDto.nome());
         patio.setEndereco(endereco);
 
         

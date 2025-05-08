@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import mottu_spot.api.model.enums.Status;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -14,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -54,4 +56,7 @@ public class Moto {
     @JsonBackReference
     private Patio patio;
 
+    @OneToOne(mappedBy = "moto")
+    @JsonManagedReference
+    private Dispositivo dispositivo;
 }

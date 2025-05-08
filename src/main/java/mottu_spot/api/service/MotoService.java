@@ -26,13 +26,13 @@ public class MotoService {
 
     public Moto adicionarMoto(MotoDTO motoDto) {
 
-        Patio patio = patioRepository.findById(motoDto.getPatioId())
+        Patio patio = patioRepository.findById(motoDto.patioId())
             .orElseThrow(() -> new RuntimeException());
 
         Moto moto = Moto.builder()
-        .placa(motoDto.getPlaca())
-        .descricao(motoDto.getDescricao())
-        .status(Status.valueOf(motoDto.getStatus().toUpperCase()))
+        .placa(motoDto.placa())
+        .descricao(motoDto.descricao())
+        .status(Status.valueOf(motoDto.status().toUpperCase()))
         .patio(patio)
         .build();
 
@@ -46,4 +46,23 @@ public class MotoService {
     public Page<Moto> listarMotos(Specification<Moto> motoFilter, Pageable pageable) {
         return motoRepository.findAll(motoFilter, pageable);
     }
+
+    public void deletarMoto(Long id) {
+        motoRepository.deleteById(id);
+    }
+
+    public Moto atualizarMoto(Long id, MotoDTO motoDto) {
+        Moto moto = motoRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Moto não encontrada"));
+        Patio patio = patioRepository.findById(motoDto.patioId()).orElseThrow(() -> new RuntimeException());
+
+        moto.setDescricao(motoDto.descricao());
+        moto.setPlaca(motoDto.placa());
+        moto.setStatus(Status.valueOf(motoDto.status().toUpperCase()));
+        moto.setPatio(patio);
+        
+        return motoRepository.save(moto);
+    }
+
+    
+    
 }
