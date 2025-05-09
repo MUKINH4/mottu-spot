@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
 import mottu_spot.api.DTO.MotoDTO;
+import mottu_spot.api.model.Dispositivo;
 import mottu_spot.api.model.Moto;
 import mottu_spot.api.service.MotoService;
 import mottu_spot.api.specification.MotoSpecification;
@@ -32,12 +33,20 @@ import mottu_spot.api.specification.MotoSpecification;
 public class MotoController {
 
     private MotoDTO toResponseDTO(Moto moto) {
+        Dispositivo dispositivo = null;
+    if (moto.getDispositivo() != null) {
+        dispositivo = new Dispositivo(
+            moto.getDispositivo().getId(),
+            moto.getDispositivo().isAtivo()
+        );
+    }
     return new MotoDTO(
         moto.getId(),
         moto.getPlaca(),
         moto.getDescricao(),
         moto.getStatus().name(),
-        moto.getPatio() != null ? moto.getPatio().getId() : null
+        moto.getPatio() != null ? moto.getPatio().getId() : null,
+        dispositivo
         );
     }
 

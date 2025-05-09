@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import jakarta.annotation.PostConstruct;
+import mottu_spot.api.model.Dispositivo;
 import mottu_spot.api.model.Endereco;
 import mottu_spot.api.model.Moto;
 import mottu_spot.api.model.Patio;
 import mottu_spot.api.model.enums.Status;
+import mottu_spot.api.repository.DispositivoRepository;
 import mottu_spot.api.repository.EnderecoRepository;
 import mottu_spot.api.repository.MotoRepository;
 import mottu_spot.api.repository.PatioRepository;
@@ -25,6 +27,9 @@ public class DatabaseSeeder {
 
     @Autowired
     private PatioRepository patioRepository;
+
+    @Autowired
+    private DispositivoRepository dispositivoRepository;
 
 
     @PostConstruct
@@ -106,5 +111,15 @@ public class DatabaseSeeder {
 
         motoRepository.saveAll(motos);
 
-    }
+        var dispositivos = List.of(
+            Dispositivo.builder()
+                .moto(motos.get(0))
+                .build()
+
+            ,Dispositivo.builder()
+                .moto(motos.get(1))
+                .build()
+        );
+        dispositivoRepository.saveAll(dispositivos);
+    };
 }

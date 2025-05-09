@@ -33,4 +33,8 @@ public class Dispositivo {
     @JsonBackReference
     private Moto moto;
     
+    public Dispositivo(String id, boolean ativo) {
+        this.id = id;
+        this.ativo = ativo;
+    }
 }
