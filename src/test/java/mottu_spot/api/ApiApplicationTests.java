@@ -1,4 +1,4 @@
-package spot_map.api;
+package mottu_spot.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
