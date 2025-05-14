@@ -57,7 +57,7 @@ public class MotoController {
     private MotoService motoService;
 
     @PostMapping
-    @CacheEvict(value = "motos", allEntries = true)
+    @CacheEvict(value = {"motos", "patios"}, allEntries = true)
     public ResponseEntity<Moto> adicionarMoto(@Valid @RequestBody MotoDTO motoDto) {
         Moto moto = motoService.adicionarMoto(motoDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(moto);
@@ -93,7 +93,7 @@ public class MotoController {
     }
 
     @DeleteMapping("/{id}")
-    @CacheEvict(value = "motos", allEntries = true)
+    @CacheEvict(value = {"motos", "patios"}, allEntries = true)
     public ResponseEntity<Void> deletarMoto(@PathVariable Long id){
         if(!motoService.buscarMotoPorId(id).isPresent()){
             return ResponseEntity.notFound().build();
@@ -103,7 +103,7 @@ public class MotoController {
     }
 
     @PutMapping("/{id}")
-    @CacheEvict(value = "motos", allEntries = true)
+    @CacheEvict(value = {"motos", "patios"}, allEntries = true)
     public ResponseEntity<Moto> atualizarMoto(@PathVariable Long id, @RequestBody MotoDTO motoDto){
         if (!motoService.buscarMotoPorId(id).isPresent()){
             return ResponseEntity.notFound().build();

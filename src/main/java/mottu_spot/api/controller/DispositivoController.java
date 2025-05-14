@@ -1,6 +1,7 @@
 package mottu_spot.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +22,7 @@ public class DispositivoController {
 
     @PostMapping
     public ResponseEntity<Dispositivo> criarDispositivo(@RequestBody DispositivoDTO dto){
-        return ResponseEntity.ok(dispositivoService.criarDispositivo(dto.motoId()));
+        return ResponseEntity.status(HttpStatus.CREATED).body(dispositivoService.criarDispositivo(dto.motoId()));
     }
 
     @PutMapping("/alarme/{motoId}")

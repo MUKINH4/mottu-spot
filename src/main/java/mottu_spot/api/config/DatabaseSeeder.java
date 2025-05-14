@@ -56,13 +56,33 @@ public class DatabaseSeeder {
             .build(),
 
             Endereco.builder()
-            .logradouro("Rua Esperança")
-            .numero(7)
-            .cidade("Rio de Janeiro")
+            .logradouro("Rua dos Cachimbos")
+            .numero(1010)
+            .cidade("Cidade do México")
+            .bairro("Centro")
+            .pais("México")
+            .estado("Estado do México")
+            .cep("12345-678")
+            .build(),
+
+            Endereco.builder()
+            .logradouro("Rua da Bagunça")
+            .numero(1)
+            .cidade("Itapeva")
             .bairro("Centro")
             .pais("Brasil")
-            .estado("RJ")
-            .cep("43929-531")
+            .estado("SP")
+            .cep("48273-123")
+            .build(),
+
+            Endereco.builder()
+            .logradouro("Rua das Flores")
+            .numero(48)
+            .cidade("Fortaleza")
+            .bairro("Aldeota")
+            .pais("Brasil")
+            .estado("CE")
+            .cep("12331-192")
             .build()
         );
         enderecoRepository.saveAll(enderecos);
@@ -81,6 +101,16 @@ public class DatabaseSeeder {
             Patio.builder()
             .nome("Patio 3")
             .endereco(enderecos.get(2))
+            .build(),
+            
+            Patio.builder()
+            .nome("Patio 4")
+            .endereco(enderecos.get(3))
+            .build(),
+
+            Patio.builder()
+            .nome("Patio 5")
+            .endereco(enderecos.get(4))
             .build()
         );
 
@@ -89,23 +119,37 @@ public class DatabaseSeeder {
         var motos = List.of(
             Moto.builder()
             .placa("ABC1234")
-            .descricao("Moto 1 - Nova")
+            .descricao("Nova")
             .status(Status.ATIVO)
             .patio(patios.get(0))
             .build(),
 
             Moto.builder()
             .placa("XYZ5678")
-            .descricao("Moto 2 - Usada")
+            .descricao("Usada")
             .status(Status.INATIVO)
-            .patio(patios.get(1))
+            .patio(patios.get(0))
             .build(),
 
             Moto.builder()
             .placa("DEF9012")
-            .descricao("Moto 3 - Revisada")
+            .descricao("Revisada")
             .status(Status.ATIVO)
             .patio(patios.get(2))
+            .build(),
+
+            Moto.builder()
+            .placa("DQZ1521")
+            .descricao("Boa para Uso")
+            .status(Status.ATIVO)
+            .patio(patios.get(3))
+            .build(),
+
+            Moto.builder()
+            .placa("JKL3456")
+            .descricao("Ótima")
+            .status(Status.ATIVO)
+            .patio(patios.get(4))
             .build()
         );
 
@@ -114,10 +158,22 @@ public class DatabaseSeeder {
         var dispositivos = List.of(
             Dispositivo.builder()
                 .moto(motos.get(0))
-                .build()
+                .build(),
 
-            ,Dispositivo.builder()
+            Dispositivo.builder()
                 .moto(motos.get(1))
+                .build(),
+            
+            Dispositivo.builder()
+                .moto(motos.get(2))
+                .build(),
+
+            Dispositivo.builder()
+                .moto(motos.get(3))
+                .build(),
+
+            Dispositivo.builder()
+                .moto(motos.get(4))
                 .build()
         );
         dispositivoRepository.saveAll(dispositivos);
