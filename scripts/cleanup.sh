@@ -1,0 +1,1 @@
+az group delete -n rg-mottu-spot -y --no-wait
