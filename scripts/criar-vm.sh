@@ -11,6 +11,10 @@ grupo_recurso="rg-mottu-spot"
 imagem="Ubuntu2204"
 
 usuario="azureuser"
+senha="MottuSpot2025!"
+
+az provider register -n Microsoft.ContainerRegistry
+az provider register -n Microsoft.ContainerInstance
 
 echo "Criando grupo de recursos..."
 az group create --name $grupo_recurso --location $localizacao
@@ -21,14 +25,13 @@ az vm create \
   --name $nome_vm \
   --image $imagem \
   --admin-username $usuario \
+  --admin-password $senha \
   --generate-ssh-keys \
   --public-ip-sku Standard
 
 echo "Abrindo a porta 22 para SSH..."
 az vm open-port --port 22 --resource-group $grupo_recurso --name $nome_vm --priority 1010
-
-az vm open-port --port 80 --resource-group $grupo_recurso --name $nome_vm --priority 1020
-az vm open-port --port 8080 --resource-group $grupo_recurso --name $nome_vm
+az vm open-port --port 8080 --resource-group $grupo_recurso --name $nome_vm --priority 1020
 
 echo "Máquina virtual criada com sucesso!"
 
