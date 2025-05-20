@@ -7,6 +7,7 @@ import mottu_spot.api.model.enums.Status;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -56,7 +57,7 @@ public class Moto {
     @JsonBackReference
     private Patio patio;
 
-    @OneToOne(mappedBy = "moto")
+    @OneToOne(mappedBy = "moto", cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JsonManagedReference
     private Dispositivo dispositivo;
 }
