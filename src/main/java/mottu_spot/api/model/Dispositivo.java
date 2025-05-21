@@ -28,7 +28,7 @@ public class Dispositivo {
     @Builder.Default
     private boolean ativo = false;
 
-    @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToOne
     @JoinColumn(name = "moto_id")
     @JsonBackReference
     private Moto moto;
