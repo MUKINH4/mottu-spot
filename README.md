@@ -38,11 +38,11 @@ A API Spring Boot gerencia as operações de criação, listagem, atualização 
 
 1. Construa a imagem:
    ```bash
-   docker build -t mottu-spot-api/<nome_docker_hub> .
+   docker build -t <nome_docker_hub>/backend .
    ```
 2. Dê push para o Docker local
     ```bash
-    docker push mottu-spot-api/<nome_docker_hub>
+    docker push <nome_docker_hub>/backend
     ```
 
 ### Criação da VM no Azure
