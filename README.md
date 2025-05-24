@@ -33,7 +33,7 @@ ou
 mvn spring-boot:run
 ```
 
-## Instruções para Rodar com Docker
+## Instruções para Rodar com Docker dentro da VM
 
 ### Build
 
@@ -257,7 +257,7 @@ curl localhost:8080/moto
 Exemplo de uso:
 ```javascript
 {
-   "placa": "ACS1S23,
+   "placa": "ACS1S23",
    "descricao": "Boa para uso",
    "status": "ATIVO",
    "patioId": 1   
